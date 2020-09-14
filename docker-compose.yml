@@ -1,0 +1,18 @@
+version: "3.8"
+volumes:
+  db-store:
+services:
+  mariadb-server:
+    image: 'bitnami/mariadb:5.5.48-0-r01'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_EXTRA_FLAGS=--max-connect-errors=1000 --max_connections=155
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_USER=user_1
+      - MARIADB_PASSWORD=password
+      - MARIADB_DATABASE=db_1
+    volumes:
+      - db-store:/var/lib/mysql
+    ports:
+      - 3307:3306
